@@ -120,3 +120,46 @@ body {
 }
 #game3 {
 }
+.legal {
+	text-align: center;
+	color: white;
+}
+.twist-body {
+	font-size: 1.2em;
+	background-color: #d1d1d1;
+	border-radius: 8px;
+	padding: 8px;
+}
+.twist-concept {
+	padding: 16px 0px;
+}
+.twist-card {
+	background-color: #efefef;
+	padding: 24px;
+}
+.twist-rules {
+	padding-left: 16px;
+}
+.twist-rule {
+	margin: 16px 0px;
+	display: flex;
+}
+.rule-big {
+	font-weight: bold;
+}
+.twist-title {
+	font-weight: bold;
+	letter-spacing: 1px;
+	font-size: 1.3em;
+	color: #00a7e1;
+}
+.twist-narrative {
+	padding: 16px 0px;
+}
+.twist-marker {
+	background-color: #00a7e1;
+	height: 16px;
+	min-width: 16px;
+	margin: 8px;
+    border-radius: 8px;
+}
