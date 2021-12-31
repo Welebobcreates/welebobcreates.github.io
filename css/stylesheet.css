@@ -74,7 +74,6 @@ body {
 	font-weight: bold;
 }
 .button-act:hover {
-	background-color: #0087c1;
 	box-shadow: #0f1020 5px 5px 5px;
 }
 .button-support {
@@ -85,6 +84,11 @@ body {
 	font-size: 1.2em;
 	letter-spacing: 1px;
 	font-weight: bold;
+	width: 95%;
+	cursor: pointer;
+}
+.button-support:hover {
+	box-shadow: #0f1020 5px 5px 5px;
 }
 .split-wrapper {
 	padding: 16px;
@@ -98,13 +102,17 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin: 16px 0px;
+	margin: 32px 0px;
 }
 .right-title {
 	color: #00a7e1;
 	font-size: 1.1em;
-	lett-erspacing: 1px;
+	letter-spacing: 1px;
 	width: 100%;
+}
+.right-desc {
+	font-size: 1.1em;
+	text-align: center;
 }
 #game1 {
 	background-image: url('../img/game1.jpg');
