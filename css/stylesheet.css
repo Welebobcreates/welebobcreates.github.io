@@ -163,3 +163,11 @@ body {
 	margin: 8px;
     border-radius: 8px;
 }
+.ng-options {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ng-option {
+	width: 50%;
+}

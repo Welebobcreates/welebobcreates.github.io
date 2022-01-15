@@ -28,6 +28,57 @@
 			<div class="content-bar">
 				<div class="content-left">
 					<div class="split-wrapper">
+						<div class="twist-body" id="necrograve">
+							<div class="twist-card">
+								<div class="twist-title">
+									Necrograve
+								</div>
+								<div class="twist-narrative">
+									Boop
+								</div>
+								<div class="twist-rules">
+									<div class="ng-options">
+										<div class="ng-option">
+											<div class="ng-option-title">
+												Select Enemy Type
+											</div>
+											<div class="ng-select-box">
+												<select class="" id="enSel">
+													<option value="deathGuard">
+														Deathguard
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="ng-option">
+											<div class="ng-option-title">
+												Select Enemies
+											</div>
+											<div class="ng-select-box" id="enemySelNG">
+											</div>
+										</div>
+									</div>
+									<div class="ng-encounters">
+										<div class="ng-act-title">
+											Encounter
+										</div>
+										<div class="ng-encounter" id="enouncterActNG">
+											- - - - - - - - 
+										</div>
+									</div>
+									<div class="ng-button">
+										<button class="ng-butt" id="encounterGenNG">
+											Generate Encounter
+										</button>
+									</div>
+								</div>
+								<div class="twist-concept">
+								Boop  
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="split-wrapper">
 						<div class="twist-body" id="varanstone">
 							<div class="twist-card">
 								<div class="twist-title">
@@ -106,22 +157,75 @@
 		</div>
 		<script>
 			function changeTag() {
-				var maths = Math.floor((Math.random() * 10) + 1);
+				var maths = Math.floor((Math.random() * 10) + 1)-1;
 				var options = ["Just WAAAAAGH", "Just Fun", "Just Glory", "Just Rat Balls", "Just ...", "Just Grimdark", "Just Hold Me Closer", "Just Moar Dakka", "Just Keep On Keeping On"];
 				$("#changeTag").html(options[maths]);
-			}
+			};
+			function genEnemies() {
+				var deathGuard = ["Poxwalker", "Plague Bearer", "Beast of Nurgle", "Plague Marine", "Plague Marine - Melee Specialist", "Plague Marine - Heavy Gunner", "Plague Marine - Flamethrower"];
+				var selectVal = $("#enSel").val();
+				console.log(selectVal);
+				$.each( deathGuard, function( index, value ){
+					$("#enemySelNG").append('<input class="ng-en-sel" type="checkbox" value="'+value+'" id="'+value+'"/><label for="'+value+'">'+value+'</label>');
+				});
+			};
+			var ngEnemies = [];
 			$(document).ready( function() {
 				changeTag();
-			})
+				genEnemies();
+				$(".ng-en-sel").on('change', function(event) {
+					var selection = event.target.value;
+					console.log(event);
+					ngEnemies.push(selection);
+					console.log(ngEnemies);
+				});
+				$("#enSel").on('change', function() {
+					genEnemies();
+				})
+			});
 			$("#link-insta").on('click', function(){
 			   window.location.href='https://www.instagram.com/welebobcreates/';
-			})
+			});
 			$("#link-youtube").on('click', function(){
 			   window.location.href='https://www.youtube.com/channel/UCvm_zEeGzXD4oLMgO_kxRLw';
-			})
+			});
 			$("#link-twitch").on('click', function(){
 			   window.location.href='https://www.twitch.tv/welebobcreates';
-			})
+			});
+			$("#encounterGenNG").on('click', function() {
+				var ngEnLen = ngEnemies.length;
+				if(ngEnLen == 0) {
+					console.log("error");
+				}
+				else {
+					var mathsEnemy = Math.floor((Math.random() * ngEnLen) + 1)-1;
+					var ngEnemy = ngEnemies[mathsEnemy];
+					var ngEnc = [
+						"All hostiles gain +1 Fight and +1 Shoot for this turn.",
+						"Randomly select one hostile and give them +1 Action.",
+						"3",
+						"4",
+						"All hostiles restore +3 Health.",
+						"Place one "+ngEnemy+" randomly on the board edge.",
+						"Place two "+ngEnemy+" randomly on the board edge.",
+						"8",
+						"9",
+						"Place a piece of data loot at the center of the board.",
+						"Place a piece of physical loot at the center of the board.",
+						"Place one "+ngEnemy+" randomly on an objective.",
+						"Place two "+ngEnemy+" randomly on an objective.",
+						"14",
+						"15",
+						"All crew members restore +3 Health",
+						"Randomly select one crewmate and give them +1 Action.",
+						"18",
+						"19",
+						"All crew member gain +1 Fight and +1 Shoot for this turn.",
+					];
+					var mathsEncounter = Math.floor((Math.random() * 20) + 1)-1;
+					$("#enouncterActNG").html(ngEnc[mathsEncounter]);
+				}
+			});
 		</script>
 	</body>
 </html>
