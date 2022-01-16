@@ -3,7 +3,7 @@ body {
 	padding: 0px;
 	font-size: 1em;
 	font-family: 'Roboto', sans-serif;
-	background-color: #F0803C;
+	background-color: #284B63;
 	color: #0f1020;
 	background-image: url('../img/dice4.png');
 	background-attachment: fixed;
@@ -90,11 +90,14 @@ body {
 .button-support:hover {
 	box-shadow: #0f1020 5px 5px 5px;
 }
+.button-support-smol {
+	width: auto;
+}
 .split-wrapper {
 	padding: 16px;
 	background-color: #efefef;
 	border-radius: 8px;
-	margin: 0px 8px;
+	margin: 8px;
 }
 .right-box {
 	text-align: center;
@@ -166,8 +169,47 @@ body {
 .ng-options {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 }
 .ng-option {
-	width: 50%;
+	min-width: 15%;
+}
+.hide {
+	display: none;
+}
+.ng-select-box {
+	padding: 8px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.sel-enemy {
+	padding: 3px 8px;
+    margin: 3px 5px;
+    border-radius: 8px;
+    background-color: #fff;
+	border: 1px solid #00a7e1;
+	cursor: pointer !important;
+}
+.sel-type {
+	width: 90%;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+	background-color: #fff;
+	border: 1px solid #00a7e1;
+}
+.ng-encounter {
+	text-align: center;
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+.ng-encounters {
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 8px;
+	border: 1px solid #00a7e1;
+	margin: 16px;
 }

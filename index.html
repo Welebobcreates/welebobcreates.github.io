@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<div class="content-wrapper">
-			<div class="content-bar">
+			<div class="content-bar hide">
 				<div class="content-nav">
 					<div class="button-wrapper">
 						<button class="button-act">
@@ -31,19 +31,19 @@
 						<div class="twist-body" id="necrograve">
 							<div class="twist-card">
 								<div class="twist-title">
-									Necrograve
+									Necrograve Encounter Generator
 								</div>
 								<div class="twist-narrative">
-									Boop
+									This is an encounter generator to be used at the end of every turn in Stargrave. 
 								</div>
 								<div class="twist-rules">
 									<div class="ng-options">
 										<div class="ng-option">
-											<div class="ng-option-title">
+											<div class="ng-option-title rule-big">
 												Select Enemy Type
 											</div>
 											<div class="ng-select-box">
-												<select class="" id="enSel">
+												<select class="sel-type" id="enSel">
 													<option value="deathGuard">
 														Deathguard
 													</option>
@@ -51,29 +51,26 @@
 											</div>
 										</div>
 										<div class="ng-option">
-											<div class="ng-option-title">
+											<div class="ng-option-title rule-big">
 												Select Enemies
 											</div>
 											<div class="ng-select-box" id="enemySelNG">
 											</div>
 										</div>
+										<div class="ng-option">
+											<button class="ng-butt button-support button-support-smol" id="encounterGenNG">
+											Generate Encounter
+										</button>
+										</div>
 									</div>
 									<div class="ng-encounters">
-										<div class="ng-act-title">
-											Encounter
-										</div>
 										<div class="ng-encounter" id="enouncterActNG">
 											- - - - - - - - 
 										</div>
 									</div>
-									<div class="ng-button">
-										<button class="ng-butt" id="encounterGenNG">
-											Generate Encounter
-										</button>
-									</div>
 								</div>
 								<div class="twist-concept">
-								Boop  
+								The concept behind this is to create a digital d20 table inspired by the ones from Stargrave but also featuring more random effects, both positive and negative. Crew members and hostiles have a slim chance to buff themselves, heal or gain actions, while possibly also spawning more loot or more enemies!
 							</div>
 							</div>
 						</div>
@@ -162,11 +159,12 @@
 				$("#changeTag").html(options[maths]);
 			};
 			function genEnemies() {
-				var deathGuard = ["Poxwalker", "Plague Bearer", "Beast of Nurgle", "Plague Marine", "Plague Marine - Melee Specialist", "Plague Marine - Heavy Gunner", "Plague Marine - Flamethrower"];
+				$("#enemySelNG").html("");
+				var deathGuard = ["Poxwalker", "Poxwalker - Burster", "Cultist", "Plague Bearer", "Beast of Nurgle", "Nurgling Swarm", "Plague Marine", "Plague Marine - Melee Specialist", "Plague Marine - Heavy Gunner", "Plague Marine - Flamethrower"];
 				var selectVal = $("#enSel").val();
 				console.log(selectVal);
 				$.each( deathGuard, function( index, value ){
-					$("#enemySelNG").append('<input class="ng-en-sel" type="checkbox" value="'+value+'" id="'+value+'"/><label for="'+value+'">'+value+'</label>');
+					$("#enemySelNG").append('<div class="sel-enemy"><input class="ng-en-sel" type="checkbox" value="'+value+'" id="'+value+'"/><label for="'+value+'">'+value+'</label></div>');
 				});
 			};
 			var ngEnemies = [];
@@ -175,9 +173,16 @@
 				genEnemies();
 				$(".ng-en-sel").on('change', function(event) {
 					var selection = event.target.value;
-					console.log(event);
-					ngEnemies.push(selection);
-					console.log(ngEnemies);
+					if(ngEnemies.includes(selection) == true) {
+						var selIndex = ngEnemies.indexOf(selection);
+						console.log(selIndex);
+						ngEnemies.splice(selIndex, 1);
+						console.log("true", ngEnemies);
+					}
+					else {
+						ngEnemies.push(selection);
+						console.log("false", ngEnemies);
+					};
 				});
 				$("#enSel").on('change', function() {
 					genEnemies();
@@ -192,35 +197,38 @@
 			$("#link-twitch").on('click', function(){
 			   window.location.href='https://www.twitch.tv/welebobcreates';
 			});
+			var randoMons = ["Bounty Hunter", "Ammo Jack", "Dome Runner", "Ruffian", "Ruffian", "Ruffian"];
 			$("#encounterGenNG").on('click', function() {
 				var ngEnLen = ngEnemies.length;
 				if(ngEnLen == 0) {
-					console.log("error");
+					$("#enouncterActNG").html("Please select some enemies");
 				}
 				else {
 					var mathsEnemy = Math.floor((Math.random() * ngEnLen) + 1)-1;
+					var mathsMons = Math.floor((Math.random() * 6) + 1)-1;
 					var ngEnemy = ngEnemies[mathsEnemy];
+					var ngMons = randoMons[mathsMons];
 					var ngEnc = [
-						"All hostiles gain +1 Fight and +1 Shoot for this turn.",
-						"Randomly select one hostile and give them +1 Action.",
-						"3",
-						"4",
+						"All hostiles gain +1 Fight and +1 Shoot for next turn.",
+						"Randomly select one hostile and give them +1 Action for next turn.",
+						"Randomly select one hostile and give them +1 Move Action for next turn.",
+						"Place one neutral "+ngMons+" randomly on the board edge.",
 						"All hostiles restore +3 Health.",
 						"Place one "+ngEnemy+" randomly on the board edge.",
 						"Place two "+ngEnemy+" randomly on the board edge.",
-						"8",
-						"9",
+						"Place one "+ngEnemy+" randomly on the board edge.",
+						"Place two "+ngEnemy+" randomly on the board edge.",
 						"Place a piece of data loot at the center of the board.",
 						"Place a piece of physical loot at the center of the board.",
 						"Place one "+ngEnemy+" randomly on an objective.",
 						"Place two "+ngEnemy+" randomly on an objective.",
-						"14",
-						"15",
+						"Place one "+ngEnemy+" randomly on an objective.",
+						"Place two "+ngEnemy+" randomly on an objective.",
 						"All crew members restore +3 Health",
-						"Randomly select one crewmate and give them +1 Action.",
-						"18",
-						"19",
-						"All crew member gain +1 Fight and +1 Shoot for this turn.",
+						"Randomly select one crew member and give them +1 Action for next turn.",
+						"Place one neutral "+ngMons+" randomly on an objective.",
+						"Randomly select one crew member and give them +1 Move Action for next turn.",
+						"All crew member gain +1 Fight and +1 Shoot for this turn for next turn.",
 					];
 					var mathsEncounter = Math.floor((Math.random() * 20) + 1)-1;
 					$("#enouncterActNG").html(ngEnc[mathsEncounter]);
