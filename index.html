@@ -120,8 +120,9 @@
 												</div>
 												<div class="ng-select-box">
 													<select class="sel-type" id="enSel">
-														<option value="deathGuard">
-															Deathguard
+														
+														<option value="orks">
+															Orks
 														</option>
 													</select>
 												</div>
@@ -235,11 +236,14 @@
 				var options = ["Just WAAAAAGH", "Just Fun", "Just Glory", "Just Rat Balls", "Just ...", "Just Grimdark", "Just Hold Me Closer", "Just Moar Dakka", "Just Keep On Keeping On"];
 				$("#changeTag").html(options[maths]);
 			};
+			var deathGuard = ["Poxwalker", "Poxwalker - Burster", "Cultist", "Plague Bearer", "Beast of Nurgle", "Nurgling Swarm", "Plague Marine", "Plague Marine - Melee Specialist", "Plague Marine - Heavy Gunner", "Plague Marine - Flamethrower"];
+			var orks = ["Grot", "Ork Boy - Choppa & Slugga", "Ork Boy - Shoota", "Ork Boy - Big Shoota", "Ork Boy - Rokit Launcha"];
 			function genEnemies() {
 				$("#enemySelNG").html("");
-				var deathGuard = ["Poxwalker", "Poxwalker - Burster", "Cultist", "Plague Bearer", "Beast of Nurgle", "Nurgling Swarm", "Plague Marine", "Plague Marine - Melee Specialist", "Plague Marine - Heavy Gunner", "Plague Marine - Flamethrower"];
+				
 				var selectVal = $("#enSel").val();
-				$.each( deathGuard, function( index, value ){
+				
+				$.each( orks, function( index, value ){
 					$("#enemySelNG").append('<div class="sel-enemy"><input class="ng-en-sel" type="checkbox" value="'+value+'" id="'+value+'"/><label for="'+value+'">'+value+'</label></div>');
 				});
 			};
