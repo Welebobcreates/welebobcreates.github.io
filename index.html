@@ -291,22 +291,29 @@
 				}
 				else {
 					ngBehaveMelee = [
-						"The unit recovers d3 toughness , d3 wounds, or being stunned",
-						"Charge closest unit or rush if not in range.",
-						"Charge closest unit or rush if not in range.",
-						"Charge weakest unit or rush if not in range.",
-						"Charge strongest unit or rush if not in range.",
-						"Charge nearest unit or rush if not in range. Perform an additional charge or rush.",
+						"This unit recovers d3 wounds and being stunned.",
+						"Charge closest unit or move toward closest unit, trying to end in cover if not in range.",
+						"Charge closest unit or rush shortest distance toward closest unit if not in range.",
+						"Charge closest unit or rush shortest distance toward closest unit if not in range.",
+						"Charge closest unit or rush an addiitonal +3 if not in range.",
+						"Charge nearest unit and perform twice as many attacks or rush twice the distance if not in range.",
 					]
 					ngBehaveShooting = [
-						"The unit recovers d3 toughness , d3 wounds, or being stunned",
+						"This unit recovers d3 wounds and being stunned.",
 						"Advance toward closest unit, trying to end in cover and shoot closest unit if possible.", 
-						"Advance toward closest unit, trying to end in cover and shoot closest unit if possible.",
-						"Rush toward closest objective , if no objective rush toward closest unit.",
-						"Advance toward closest unit and shoot",
-						"Advance toward closest unit, trying to end in cover and shoot closest unit if possible."
+						"Advance toward closest unit, ignoring cover, and shoot closest unit.",
+						"Rush toward closest unit.",
+						"Advance toward closest unit, ignoring cover, and shoot closest unit.",
+						"Advance toward closest unit, trying to end in cover and shoot closest unit twice if possible."
 					]
 					ngBehavehybrid = [
+						ngBehaveShooting = [
+						"This unit recovers d3 wounds and being stunned.",
+						"If in charge range, use melee behavior. If not, using shooting behavior", 
+						"If in charge range, use melee behavior. If not, using shooting behavior",
+						"Rush toward closest unit.",
+						"If in charge range, use melee behavior. If not, using shooting behavior",
+						"If in charge range, use melee behavior. If not, using shooting behavior",
 					]
 					$("#behaveActMelee").html("<span class='ng-encounter-bold'>Melee Units:</span> "+ngBehaveMelee[mathsEncounter]);
 					$("#behaveActShooting").html("<span class='ng-encounter-bold'>Shooting Units:</span> "+ngBehaveShooting[mathsEncounter]);
