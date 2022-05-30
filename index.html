@@ -27,27 +27,104 @@
 			</div>
 			<div class="content-bar">
 				<div class="content-left">
-					<div class="split-wrapper">
+				<div class="split-wrapper">
 						<div class="twist-body" id="necrograve">
 							<div class="twist-card">
 								<div class="twist-title">
-									Necrograve Encounter Generator
+									Enemy Behavior
 								</div>
 								<div class="twist-narrative">
-									This is an encounter generator to be used at the end of every turn in Stargrave. 
+									This is an behavior generator to be used at every enemy activation.
 								</div>
 								<div class="twist-rules">
 									<div class="ng-options">
 										<div class="ng-option">
-											<div class="ng-option-title rule-big">
-												Select Enemy Type
+											<div class="ng-option-double">
+												<div class="ng-option-title rule-big">
+													Select Game
+												</div>
+												<div class="ng-select-box">
+													<select class="sel-type" id="gameSelBehave">
+														<option value="OPR">
+															One Page Rules
+														</option>
+													</select>
+												</div>
 											</div>
-											<div class="ng-select-box">
-												<select class="sel-type" id="enSel">
-													<option value="deathGuard">
-														Deathguard
-													</option>
-												</select>
+										</div>
+										<div class="ng-option">
+											<div class="ng-option-double">
+												<div class="ng-option-title rule-big">
+													Select Enemy Type
+												</div>
+												<div class="ng-select-box">
+													<select class="sel-type" id="enSelBehave">
+														<option value="ork">
+															Hooligan
+														</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="ng-encounters">
+										<div class="ng-encounter-wrap">
+											<div class="ng-encounter" id="behaveActShooting">
+												- - - - - - - - 
+											</div>
+											<div class="ng-encounter" id="behaveActMelee">
+												- - - - - - - - 
+											</div>
+											<div class="ng-encounter" id="behaveActHybrid">
+												- - - - - - - - 
+											</div>
+										</div>
+										<button class="ng-butt button-support button-support-smol" id="behaveGen">
+											Generate Behavior
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="split-wrapper">
+						<div class="twist-body" id="necrograve">
+							<div class="twist-card">
+								<div class="twist-title">
+									Encounter Generator
+								</div>
+								<div class="twist-narrative">
+									This is an encounter generator to be used at the end of every turn.
+								</div>
+								<div class="twist-rules">
+									<div class="ng-options">
+										<div class="ng-option">
+											<div class="ng-option-double">
+												<div class="ng-option-title rule-big">
+													Select Game
+												</div>
+												<div class="ng-select-box">
+													<select class="sel-type" id="gameSel">
+														<option value="OPR">
+															One Page Rules
+														</option>
+														<option value="Stargrave">
+															Stargrave
+														</option>
+													</select>
+												</div>
+											</div>
+											<div class="ng-option-double">
+												<div class="ng-option-title rule-big">
+													Select Enemy Type
+												</div>
+												<div class="ng-select-box">
+													<select class="sel-type" id="enSel">
+														<option value="deathGuard">
+															Deathguard
+														</option>
+													</select>
+												</div>
 											</div>
 										</div>
 										<div class="ng-option">
@@ -57,21 +134,21 @@
 											<div class="ng-select-box" id="enemySelNG">
 											</div>
 										</div>
-										<div class="ng-option">
-											<button class="ng-butt button-support button-support-smol" id="encounterGenNG">
-											Generate Encounter
-										</button>
-										</div>
 									</div>
 									<div class="ng-encounters">
-										<div class="ng-encounter" id="enouncterActNG">
-											- - - - - - - - 
+										<div class="ng-encounter-wrap">
+											<div class="ng-encounter" id="enouncterActNG">
+												- - - - - - - - 
+											</div>
 										</div>
+										<button class="ng-butt button-support button-support-smol" id="encounterGenNG">
+											Generate Encounter
+										</button>
+									</div>
+									<div class="twist-concept">
+									The concept behind this is to create a digital d20 table inspired by the ones from Stargrave but also featuring more random effects, both positive and negative. Crew members and hostiles have a slim chance to buff themselves, heal or gain actions, while possibly also spawning more loot or more enemies!
 									</div>
 								</div>
-								<div class="twist-concept">
-								The concept behind this is to create a digital d20 table inspired by the ones from Stargrave but also featuring more random effects, both positive and negative. Crew members and hostiles have a slim chance to buff themselves, heal or gain actions, while possibly also spawning more loot or more enemies!
-							</div>
 							</div>
 						</div>
 					</div>
@@ -162,12 +239,14 @@
 				$("#enemySelNG").html("");
 				var deathGuard = ["Poxwalker", "Poxwalker - Burster", "Cultist", "Plague Bearer", "Beast of Nurgle", "Nurgling Swarm", "Plague Marine", "Plague Marine - Melee Specialist", "Plague Marine - Heavy Gunner", "Plague Marine - Flamethrower"];
 				var selectVal = $("#enSel").val();
-				console.log(selectVal);
 				$.each( deathGuard, function( index, value ){
 					$("#enemySelNG").append('<div class="sel-enemy"><input class="ng-en-sel" type="checkbox" value="'+value+'" id="'+value+'"/><label for="'+value+'">'+value+'</label></div>');
 				});
 			};
 			var ngEnemies = [];
+			var gameType = "OPR";
+			var gameTypeBehave = "OPR";
+			var enTypeBehave = "ork";
 			$(document).ready( function() {
 				changeTag();
 				genEnemies();
@@ -175,17 +254,23 @@
 					var selection = event.target.value;
 					if(ngEnemies.includes(selection) == true) {
 						var selIndex = ngEnemies.indexOf(selection);
-						console.log(selIndex);
 						ngEnemies.splice(selIndex, 1);
-						console.log("true", ngEnemies);
 					}
 					else {
 						ngEnemies.push(selection);
-						console.log("false", ngEnemies);
 					};
 				});
 				$("#enSel").on('change', function() {
 					genEnemies();
+				})
+				$("#enSelBehave").on('change', function() {
+					enTypeBehave = event.target.value;
+				})
+				$("#gameSel").on('change', function(event) {
+					gameType = event.target.value;
+				})
+				$("#gameSelBehave").on('change', function(event) {
+					gameTypeBehave = event.target.value;
 				})
 			});
 			$("#link-insta").on('click', function(){
@@ -198,6 +283,36 @@
 			   window.location.href='https://www.twitch.tv/welebobcreates';
 			});
 			var randoMons = ["Bounty Hunter", "Ammo Jack", "Dome Runner", "Ruffian", "Ruffian", "Ruffian"];
+			$("#behaveGen").on('click', function() {
+				var mathsEncounter = Math.floor((Math.random() * 6) + 1)-1;
+				var ngBehaveMelee = [];
+				var ngBehaveShooting = [];
+				if(enTypeBehave  == "swarm") {
+				}
+				else {
+					ngBehaveMelee = [
+						"The unit recovers d3 toughness , d3 wounds, or being stunned",
+						"Charge closest unit or rush if not in range.",
+						"Charge closest unit or rush if not in range.",
+						"Charge weakest unit or rush if not in range.",
+						"Charge strongest unit or rush if not in range.",
+						"Charge nearest unit or rush if not in range. Perform an additional charge or rush.",
+					]
+					ngBehaveShooting = [
+						"The unit recovers d3 toughness , d3 wounds, or being stunned",
+						"Advance toward closest unit, trying to end in cover and shoot closest unit if possible.", 
+						"Advance toward closest unit, trying to end in cover and shoot closest unit if possible.",
+						"Rush toward closest objective , if no objective rush toward closest unit.",
+						"Advance toward closest unit and shoot",
+						"Advance toward closest unit, trying to end in cover and shoot closest unit if possible."
+					]
+					ngBehavehybrid = [
+					]
+					$("#behaveActMelee").html("<span class='ng-encounter-bold'>Melee Units:</span> "+ngBehaveMelee[mathsEncounter]);
+					$("#behaveActShooting").html("<span class='ng-encounter-bold'>Shooting Units:</span> "+ngBehaveShooting[mathsEncounter]);
+					$("#behaveActHybrid").html("<span class='ng-encounter-bold so'>Hybrid Units:</span> "+ngBehaveShooting[mathsEncounter]);
+				}
+			});
 			$("#encounterGenNG").on('click', function() {
 				var ngEnLen = ngEnemies.length;
 				if(ngEnLen == 0) {
@@ -208,7 +323,9 @@
 					var mathsMons = Math.floor((Math.random() * 6) + 1)-1;
 					var ngEnemy = ngEnemies[mathsEnemy];
 					var ngMons = randoMons[mathsMons];
-					var ngEnc = [
+					var ngEnc = [];
+					if(gameType == "Stargrave") {
+						ngEnc = [
 						"All hostiles gain +1 Fight and +1 Shoot for next turn.",
 						"Randomly select one hostile and give them +1 Action for next turn.",
 						"Randomly select one hostile and give them +1 Move Action for next turn.",
@@ -230,6 +347,31 @@
 						"Randomly select one crew member and give them +1 Move Action for next turn.",
 						"All crew member gain +1 Fight and +1 Shoot for this turn for next turn.",
 					];
+					}
+					else {
+					ngEnc = [
+						"All hostiles gain +1 Quality and +1 Defense for next turn.",
+						"Randomly select one hostile and give them +1 Defense for next turn.",
+						"Randomly select one hostile and give them +1 Quality for next turn.",
+						"Randomly select one hostile and give them +1 inch Move for next turn.",
+						"Place one neutral "+ngMons+" randomly on the board edge.",
+						"Place one neutral "+ngMons+" randomly on an objective.",
+						"Place one "+ngEnemy+" randomly on the board edge.",
+						"Place one "+ngEnemy+" randomly on an objective.",
+						"Randomly select one crew member and give them +1 Defense for next turn.",
+						"Randomly select one crew member and give them +1 Quality for next turn.",
+						"Randomly select one crew member and give them +1 inch Move for next turn.",
+						"All crew member gain +1 Quality and +1 Defense for this turn for next turn.",
+						"Place a treasure marker at the center of a random table quarter. Units can pick it up by moving into contact with it, and they drop it if they are Knocked Out or Stunned. If a unit with it manages to exit the table through an opponent‘s table edge its warband gets 1 VP.",
+						"Select one random warband. Enemy warbands get 5pts at the end of the mission for every unit from it that they managed to Knock Out.",
+						"All of the units within that table quarter get -6“ range when shooting.",
+						"Select D3 random units, which can‘t shoot until the end of the mission.",
+						"Select one random unit, which immediately gets D3 * 1 XP.",
+						"Select one random unit that is Stunned, which immediately stops being Stunned.",
+						"Select one random unit, which doubles its shooting attacks during this round.",
+						"Select one random unit that is within 2“ of elevation. That unit falls down."
+					];
+					}
 					var mathsEncounter = Math.floor((Math.random() * 20) + 1)-1;
 					$("#enouncterActNG").html(ngEnc[mathsEncounter]);
 				}

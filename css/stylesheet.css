@@ -77,7 +77,6 @@ body {
 	box-shadow: #0f1020 5px 5px 5px;
 }
 .button-support {
-	padding: 8px 16px;
 	background-color: #00a7e1;
 	transition: 0.3s;
 	box-shadow: #0f1020 2px 2px 2px;
@@ -172,7 +171,7 @@ body {
 	align-items: flex-start;
 }
 .ng-option {
-	min-width: 15%;
+	min-width: 30%;
 }
 .hide {
 	display: none;
@@ -201,15 +200,25 @@ body {
 	border: 1px solid #00a7e1;
 }
 .ng-encounter {
-	text-align: center;
+	text-align: left;
 	letter-spacing: 1px;
-	font-weight: bold;
 	font-size: 1.2em;
+	border-bottom: 1px solid #d3d3d3;
+    padding: 8px 0px;
 }
-.ng-encounters {
+.ng-encounter-bold {
+	font-weight: bold;
+}
+.ng-encounter-wrap {
     padding: 16px;
     background-color: #ffffff;
     border-radius: 8px;
 	border: 1px solid #00a7e1;
-	margin: 16px;
+	margin: 16px 0px;
+	width: 100%;
+}
+.ng-encounters {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 }
