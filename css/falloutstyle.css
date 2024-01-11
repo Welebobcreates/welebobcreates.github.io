@@ -1,0 +1,192 @@
+body {
+	color: #303030;
+	font-size: 1em;
+	padding: 0px;
+	margin: 0px;
+	background-color: #AB9D90ff;
+	background-image: url('../img/crissxcross.png');
+}
+.content-wrapper {
+	width: 100%;
+}
+.content-box {
+	display: flex;
+	justify-content: space-evenly;
+	padding: 64px;
+}
+.desc-wrapper {
+	background-color: #EDE7D4ff;
+	border-radius: 0px 8px 8px 0px;
+	width: 30%;
+}
+.desc-box {
+	padding: 32px;
+}
+.map-box {
+	background-image: url('../img/fallouthawaiimap.png');
+	width: 1000px;
+	height: 800px;
+	border-radius: 8px;
+	border: 8px solid #B8D2C1ff;
+	background-size: cover;
+}
+.map-wrapper {
+	dispplay: flex;
+	align-items: center;
+	justify-content: center;
+}
+.title-box {
+	border-bottom: 3px solid #E59261ff;
+	text-align: center;
+	padding: 16px;
+}
+.title {
+	font-size: 1.5em;
+}
+.direction {
+	text-align: center;
+	font-size: 1.2em;
+	padding: 8px 0px;
+	margin-bottom: 32px;
+}
+.subtitle {
+	font-size: 2em;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+.icon-box {
+	position: absolute;
+}
+.icon-gen {
+	font-size: 2em;
+	font-weight: bold;
+	color: #E59261ff;
+	position: absolute;
+	cursor: pointer;
+	trasition: 0.3s;
+}
+.icon-gen:hover {
+	color: #c57241ff;
+	font-size: 2.4em;
+}
+.icon-selected {
+	color: #c57241ff;
+	font-size: 2.4em;
+}
+.icon-visited {
+}
+icon-visitable {
+}
+icon-toofar {
+}
+.event-ico {
+	color: #c57241ff;
+	font-weight: bold;
+	font-size: 1.7em;
+	padding: 8px;
+}
+.event-title {
+	color: #c57241ff;
+	font-weight: bold;
+	letter-spacing: 1px;
+	font-size: 1.5em;
+	padding: 8px;
+}
+.event-narrative {
+	font-size: 1.3em;
+}
+.event-block {
+	padding: 8px 16px;
+}
+.event-flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.event-header {
+	font-size: 1.1em;
+}
+.event-goal {
+	font-size: 1.3em;
+}
+.event-reward {
+	font-size: 1.3em;
+	
+}
+.event-alert {
+	text-align: center;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    color: #707A4Bff;
+    font-weight: bold;
+	padding: 8px;
+	border-radius: 8px;
+}
+.effect-wrapper {
+	background-color: #EDE7D4ff;
+	border-radius: 0px 8px 8px 0px;
+	margin: 16px 0px;
+}
+.effect-box {
+	padding: 16px 32px;
+}
+.effect-title {
+	font-size: 1.1em;
+}
+.effects {
+	font-size: 1.2em;
+}
+.effects div {
+	margin: 3px 0px;
+}
+.effect-name {
+	color: #707A4Bff;
+	font-weight: bold;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+
+#ship1 {
+	left: 600px;
+	top: 660px;
+}
+#pump1 {
+	left: 600px;
+    top: 410px;
+}
+#food1 {
+	left: 660px;
+    top: 580px;
+}
+#rad1 {
+	left: 520px;
+    top: 400px;
+}
+#skull1 {
+	left: 760px;
+    top: 600px;
+}
+#dump1 {
+	left: 520px;
+    top: 520px;
+}
+#vendor1 {
+	left: 670px;
+    top: 480px;
+}
+#gun1 {
+	left: 820px;
+    top: 570px;
+}
+#plane1 {
+	left: 430px;
+    top: 650px;
+}
+#flood1 {
+	left: 500px;
+    top: 660px;
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+		<link type="text/css" href="css/falloutstyle.css" media="all" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+		<link href="fonts/fontawesome.css" rel="stylesheet">
+		<link href="fonts/brands.css" rel="stylesheet">
+		<link href="fonts/solid.css" rel="stylesheet">
+		<title>Fallout Hawaii Campaign</title>
+		<script>
+		var events = {
+		"ship1":{
+			"icon": "fa-ship",
+			"title": "Answering the Master's Call",
+			"narrative": "We have all heard the call. We have all traveled across the sea. We have all risked life and limb. We must take this ground so that we can search for the Master.",
+			"goal": "Establish a temporary base on the beach by exploring and clearing out enemies.",
+			"reward": "A place to call home while you search the surrounding area. At least for now.",
+			"alert": false
+		},
+		"vendor1":{
+			"icon": "fa-sack-dollar",
+			"title": "Battle at the Shopping Center",
+			"narrative": "There is sounds of fighting in the distance. A group of traders is under attack. They would be easy pickings but having friendly traders in this strange land could be very useful.",
+			"goal": "Steal the loot from the traders or help the traders by clearing out the hostiles.",
+			"reward": "d6 item cards from looting the trader's brahmin OR unlock the ability to sell/buy items by saving the traders.",
+			"alert": true
+		},
+		"pump1":{
+			"icon": "fa-gas-pump",
+			"title": "Big Red Rocket",
+			"narrative": "This gas station has withstood the test of time... and nuclear war. It would make a great permanent settlement once you secure the area.",
+			"goal": "Control more objectives than the hostiles at the end of turn 5.",
+			"reward": "You unlock settlement mode and can have a real place to call home.",
+			"alert": true
+		},
+		"food1":{
+			"icon": "fa-utensils",
+			"title": "Ono Grindz",
+			"narrative": "A group of raiders are slugging it out with ghouls in the wreckage of this shopping enter. You could probably scavenge up tons of food or chems from here if you could get rid of the raiders first.",
+			"goal": "Eliminate all raiders.",
+			"reward": "d6 item cards and +1 for each ghoul eliminated.",
+			"alert": false
+		},
+		"skull1":{
+			"icon": "fa-skull-crossbones",
+			"title": "We've Got Crabs",
+			"narrative": "This destroyed country club is infested with Mirelurks. You have to go clear it out or they might think your settlement is their next meal.",
+			"goal": "Destroy all Mirelurk Eggs. Each egg can be destroyed as a free action once in black range.",
+			"reward": "Reduces the chance of a Mirelurk raid by 1/6th",
+			"alert": false
+		},
+		"dump1":{
+			"icon": "fa-dumpster",
+			"title": "Trash Panda",
+			"narrative": "The locals won't get near the refuse center because they say a massive beast now calls it home. There might be valuable supplies in there if you could get rid of the beast.",
+			"goal": "Defeat the Trash Panda or loot as much as possible.",
+			"reward": "Whatever items you can find plus defeating the Trash Panda rewards a valuable trophy that will buff your entire party.",
+			"alert": true
+		},
+		"rad1": {
+			"icon": "",
+			"title": "",
+			"narrative": "",
+			"goal": "",
+			"reward": "",
+			"alert": true
+		},
+		"gun1": {
+			"icon": "fa-person-rifle",
+			"title": "Shootout at the Shooting Range",
+			"narrative": "Gunfire rings out as a group of raiders practice their shots at a dilapidated rifle range. There must be large weapon stock piles around here if they are wasting so much ammo. You could take those supplies if you could get rid of the raiders.",
+			"goal": "Eliminate all raiders or loot as much as possible in 5 turns.",
+			"reward": "Any item cards you find and any remaining items plus +1 if you eliminate all raiders.",
+			"alert": true
+		},
+		"plane1": {
+			"icon": "fa-plane",
+			"title": "Run Run Runway",
+			"narrative": "A massive super mutant is stomping around the runway screaming loudly about the Master. If you get close, you might be able to learn something about where the Master is. If you get too close, the behemoth is going to smash you.",
+			"goal": "Survive until the behemoth calms down on turn 7. Any model within black range can try to sooth the behemoth as a free action on a skilltest of 4, a success will reduce the turns needed to calm down by 1.",
+			"reward": "Win or lose: +1 Clue to the Master's location. Win: Spot the Behemoth becomes playable.",
+			"alert": true
+		},
+		"flood1": {
+			"icon": "fa-house-flood-water",
+			"title": "All Washed Up",
+			"narrative": "The beach is littered with the remains of small cottages that have been reclaimed by the sea. This wreckage looks rich in two things though, supplies and monster tracks.",
+			"goal": "Search and gather as many supplies as possible before the area floods after turn 5. Watch out for monsters who are sure to call the supply piles home.",
+			"reward": "This area looks like it will contain a wide variety of items. Keep whatever you find.",
+			"alert": false
+		}
+		}
+		function showEvent(incVal) {
+			var eventD = events[incVal];
+			$('.event-icon').html('<i class="event-ico fa-solid '+eventD.icon+'"></i>');
+			$('.event-title').html(eventD.title);
+			$('.event-narrative').html(eventD.narrative);
+			$('.event-goal').html(eventD.goal);
+			$('.event-reward').html(eventD.reward);
+			if( eventD.alert == true ) {
+				$('.event-alert').html("<div> - Route Blocked - </div><div>Explore Nearby Areas First</div>");
+			}
+			else {
+				$('.event-alert').html("");
+			}
+			$('.event-header').addClass('show');
+			$(".icon-gen").removeClass('icon-selected');
+			$("#"+incVal).addClass('icon-selected');
+		}
+		</script>
+	</head>
+	<body>
+		<div class="content-wrapper">
+			<div class="content-box">
+				<div class="desc-wrapper">
+					<div class="desc-box">
+						<div class="title-box">
+							<div class="title">
+								Oahu Fallout Campaign
+							</div>						
+							<div class="subtitle">
+								Finding the Master
+							</div>
+						</div>
+						<div class="direction">
+							Select an icon from the map to learn about it.
+						</div>
+						<div class="event-box">
+							<div class="event-block event-flex">
+								<div class="event-icon">
+								</div>
+								<div class="event-title">
+								</div>
+							</div>
+							<div class="event-block">
+								<div class="event-narrative">
+								</div>
+							</div>
+							<div class="event-block">
+								<div class="event-header hide">
+									- Goal -
+								</div>
+								<div class="event-goal">
+								</div>
+							</div>
+							<div class="event-block">
+								<div class="event-header hide">
+									- Reward -
+								</div>
+								<div class="event-reward">
+								</div>
+							</div>
+							<div class="event-block">
+								<div class="event-alert">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="map-wrapper">
+					<div class="map-box">
+						<div class="icon-box">
+							<!--<i class="icon-gen fa-solid fa-radiation" id="rad1" onclick="showEvent('rad1')"></i>-->
+							<i class="icon-gen fa-solid fa-skull-crossbones" id="skull1" onclick="showEvent('skull1')"></i>
+							<i class="icon-gen fa-solid fa-dumpster" id="dump1" onclick="showEvent('dump1')"></i>
+							<i class="icon-gen fa-solid fa-gas-pump" id="pump1" onclick="showEvent('pump1')"></i>
+							<i class="icon-gen fa-solid fa-ship" id="ship1" onclick="showEvent('ship1')"></i>
+							<i class="icon-gen fa-solid fa-utensils" id="food1" onclick="showEvent('food1')"></i>
+							<i class="icon-gen fa-solid fa-sack-dollar" id="vendor1" onclick="showEvent('vendor1')"></i>
+							<i class="icon-gen fa-solid fa-person-rifle" id="gun1" onclick="showEvent('gun1')"></i>
+							<i class="icon-gen fa-solid fa-plane" id="plane1" onclick="showEvent('plane1')"></i>
+							<i class="icon-gen fa-solid fa-house-flood-water" id="flood1" onclick="showEvent('flood1')"></i>
+						</div>
+					</div>
+					<div class="effect-wrapper">
+						<div class="effect-box">
+							<div class="effect-title">
+								- Area Effects - 
+							</div>
+							<div class="effects">
+								<div>
+									<span class="effect-name">Mirelurk Raid:</span> Mirelurks have a 5/6th chance to show up as additional enemies on your adventures.
+								</div>
+								<div>
+									<span class="effect-name">No Traders:</span> Cannot buy or sell any items.
+								</div>
+								<div>
+									<span class="effect-name">No Trophy:</span> There is nothing to show off your accomplishments.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -3,223 +3,46 @@ body {
 	padding: 0px;
 	font-size: 1em;
 	font-family: 'Roboto', sans-serif;
-	background-color: #284B63;
+	background-color: #ECE8EF;
 	color: #0f1020;
-	background-image: url('../img/dice4.png');
-	background-attachment: fixed;
-	background-size: 5%;
 }
-.content-wrapper {
-	padding: 16px 72px;
+.header-wrapper {
+	background-color: #1C77C3;
+	padding: 32px;
+	background-image: url("../img/gplay.png");
+	background-size: 20%;
+	color: #ECE8EF;
+	letter-spacing: 1px;
+	font-weight: bold;
 }
-.content-bar {
-	padding: 8px 32px;
-	display: flex;
-	flex-wrap: wrap;
-}
-.content-banner {
-	width: 100%;
+.stat-wrapper {
+	background-image: linear-gradient(to bottom right, #0BC9CD, #ECE8EF);
+	padding: 32px;
+	margin: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #efefef;
 	border-radius: 8px;
 }
-.content-nav {
-	width: 100%;
-	display: flex;
-	align-items: center;
-}
-.content-left {
-	width: 75%;
-}
-.content-right {
-	width: 25%;
-}
-.content-name {
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-}
-.content-title {
-	font-size: 2em;
-	font-weight: bold;
-	letter-spacing: 1px;
-	width: 100%;
-}
-.content-tag {
-	font-size: 1.2em;
-	letter-spacing: 1px;
-	width: 100%;
-}
-.content-pic {
-	padding: 8px;
-}
-.pic-img {
-	width: 100%;
-	border-radius: 16px;
-}
-.button-wrapper {
-	padding: 8px;
-}
-.button-act {
-	padding: 8px 16px;
-	background-color: #00a7e1;
-	transition: 0.3s;
-	box-shadow: #0f1020 2px 2px 2px;
-	font-size: 1.2em;
-	letter-spacing: 1px;
-	font-weight: bold;
-}
-.button-act:hover {
-	box-shadow: #0f1020 5px 5px 5px;
-}
-.button-support {
-	background-color: #00a7e1;
-	transition: 0.3s;
-	box-shadow: #0f1020 2px 2px 2px;
-	font-size: 1.2em;
-	letter-spacing: 1px;
-	font-weight: bold;
-	width: 95%;
-	cursor: pointer;
-	margin: 0px 8px;
-}
-.button-support:hover {
-	box-shadow: #0f1020 5px 5px 5px;
-}
-.button-support-smol {
-	width: auto;
-}
-.split-wrapper {
+.stat-box {
+	background-color: #ECE8EF;
 	padding: 16px;
-	background-color: #efefef;
-	border-radius: 8px;
-	margin: 8px;
-}
-.right-box {
-	text-align: center;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
-	margin: 32px 0px;
-}
-.right-title {
-	color: #00a7e1;
-	font-size: 1.1em;
-	letter-spacing: 1px;
-	width: 100%;
-}
-.right-desc {
-	font-size: 1.1em;
 	text-align: center;
 }
-#game1 {
-	background-image: url('../img/game1.jpg');
-	background-size: cover;
+.stat-row {
+	width: 33%;
 }
-#game3 {
-}
-.legal {
-	text-align: center;
-	color: white;
-}
-.twist-body {
-	font-size: 1.2em;
-	background-color: #d1d1d1;
-	border-radius: 8px;
-	padding: 8px;
-}
-.twist-concept {
-	padding: 16px 0px;
-}
-.twist-card {
-	background-color: #efefef;
-	padding: 24px;
-}
-.twist-rules {
-	padding-left: 16px;
-}
-.twist-rule {
-	margin: 16px 0px;
-	display: flex;
-}
-.rule-big {
-	font-weight: bold;
-}
-.twist-title {
+.stat-title {
+	font-size: 1.4em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	font-size: 1.3em;
-	color: #00a7e1;
+	color: #1C77C3;
+	margin: 8px 0px;
 }
-.twist-narrative {
-	padding: 16px 0px;
-}
-.twist-marker {
-	background-color: #00a7e1;
-	height: 16px;
-	min-width: 16px;
-	margin: 8px;
-    border-radius: 8px;
-}
-.ng-options {
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-}
-.ng-option {
-	min-width: 30%;
-}
-.hide {
-	display: none;
-}
-.ng-select-box {
-	padding: 8px 0px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-.sel-enemy {
-	padding: 3px 8px;
-    margin: 3px 5px;
-    border-radius: 8px;
-    background-color: #fff;
-	border: 1px solid #00a7e1;
-	cursor: pointer !important;
-}
-.sel-type {
-	width: 90%;
-    padding: 8px;
-    font-size: 1em;
-    border-radius: 8px;
-    border: none;
-	background-color: #fff;
-	border: 1px solid #00a7e1;
-}
-.ng-encounter {
-	text-align: left;
-	letter-spacing: 1px;
+.stat-act {
 	font-size: 1.2em;
-	border-bottom: 1px solid #d3d3d3;
-    padding: 8px 0px;
-}
-.ng-encounter-bold {
-	font-weight: bold;
-}
-.ng-encounter-wrap {
-    padding: 16px;
-    background-color: #ffffff;
-    border-radius: 8px;
-	border: 1px solid #00a7e1;
-	margin: 16px 0px;
-	width: 100%;
-}
-.ng-encounters {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
 }
